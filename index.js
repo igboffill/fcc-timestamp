@@ -29,6 +29,11 @@ app.get("/api", function (req, res) {
   res.json( {unix: date.getTime(), utc:date.toUTCString()});
 });
 
+
+app.get("/api/whoami", function (req, res) {
+  res.json( {ipaddress : req.socket.remoteAddress});
+});
+
 app.get("/api/:param", function (req, res) {
   let date =  isNaN(req.params.param) ? new Date(req.params.param): new Date(parseInt(req.params.param))
   res.json(isNaN(date) ? {error:"Invalid Date"} : {unix: date.getTime(), utc:date.toUTCString()});
